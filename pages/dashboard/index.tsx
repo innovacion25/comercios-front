@@ -1,7 +1,7 @@
 const index = () => {
     return (
       <>
-        index de la pagina
+        
       </>
     )
   }
