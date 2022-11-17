@@ -1,13 +1,14 @@
 import { serialize } from 'cookie'
 import axios from 'axios'
+import jwt from 'jsonwebtoken'
 
 export default async function Login(req, res) {
   try {
-    const result = await axios.post('http://localhost:3333/login', req.body)
-    // console.log(result.data)
-    const data = result.data
+    const result = await axios.post('http://localhost:3004/api/auth/login', req.body)
+    
+    const verifyToken = jwt.verify(result.data, process.env.TOKEN_SECRET)
 
-    const serialized = serialize('TokenSession', data.token, {
+    const serialized = serialize('TokenSession', result.data, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'lax',
@@ -19,14 +20,14 @@ export default async function Login(req, res) {
 
     res.setHeader('Set-Cookie', serialized)
 
-    return res.json({
+    return res.status(200).json({
       error: false,
-      message: 'login success'
+      message: 'Sesión iniciada'
     })
   } catch (e) {
-    return res.json({
+    return res.status(401).json({
       error: true,
-      message: 'login error'
+      message: 'Error al iniciar sesión'
     })
   }
 }
