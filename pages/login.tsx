@@ -36,9 +36,9 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    let botonSubmit = e.target[6]
+    // let botonSubmit = e.target[6]
 
-    console.log(botonSubmit)
+    // console.log(botonSubmit)
 
     await axios.post('/api/auth/login', credentials).then(res => {
       router.push('/dashboard/inicio')
@@ -52,7 +52,7 @@ export default function Login() {
     })
   }
 
-  console.log(loading)
+  // console.log(loading)
 
   return (
     <>

@@ -1,16 +1,23 @@
 import axios from 'axios';
 import 'remixicon/fonts/remixicon.css';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 import React, { useState } from 'react'
 import PageLayout from '../components/PageLayout';
+import NotifacationToast from '../components/NotificationToast';
 
 export default function Register() {
+  const router = useRouter()
 
   const [credentials, setCredentials] = useState({
     email: '',
-    password: ''
+    password: '',
+    username: ''
   })
+
+  const [notifications, setNotifications] = useState(false)
+  const [messageToast, setMessageToast] = useState('')
 
   const handleChange = (e) => {
     setCredentials({
@@ -22,25 +29,16 @@ export default function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    // fetch(serverApi, {
-    //   method: 'GET',
-    //   headers: {
-    //     "Content-Type": 'application/json'
-    //   },
-    //   body: JSON.stringify(credentials),
-    // })
-    //   .then(res => res.json())
-    //   .then(data => {
-    //     console.log(data)
-    //   })
-
-    await axios.post('http://localhost:3333/login', credentials)
-      .then(res => {
-        const data = res.data
-
-      }).catch(e => {
-        console.log(e.message)
-      })
+    await axios.post('/api/auth/register', credentials).then(res => {
+      router.push('/dashboard/inicio')
+    }).catch(e => {
+      let message = e.response.data.message
+      setNotifications(true)
+      setTimeout(() => {
+        setNotifications(false)
+      }, 4000)
+      setMessageToast(message)
+    })
   }
 
 
@@ -89,6 +87,9 @@ export default function Register() {
             </div>
           </div>
         </div>
+        {notifications ? (
+          <NotifacationToast text={messageToast} textColor='text-red-400' />
+        ) : ''}
       </PageLayout>
 
     </>
