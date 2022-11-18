@@ -68,7 +68,7 @@ export default function Login() {
             </div>
           </div>
           <div className="bg-base-100 flex justify-center items-center lg:col-span-3 h-screen">
-            <div className="w-full flex flex-col justify-center lg:p-40 p-8 h-full">
+            <div className="w-full flex flex-col justify-center lg:p-40 p-8 h-full max-w-3xl">
               {loading ? (
                 <form onSubmit={handleSubmit}>
                   <p className="text-2xl font-bold text-gray-600 text-center mb-8">Iniciar sesión</p>
@@ -99,10 +99,6 @@ export default function Login() {
                       <i className="ri-user-2-line ri-xl"></i>
                       Iniciar sesión
                     </button>
-                    {/* <Link href="/dashboard/inicio" className="btn btn-primary gap-2 capitalize shadow-lg font-normal max-w-fit">
-                  <i className="ri-user-2-line ri-xl"></i>
-                  Iniciar sesión
-                </Link> */}
                     <Link href="/register" className="btn btn-ghost gap-2 capitalize font-normal max-w-fit">
                       <i className="ri-user-add-line ri-xl text-primary"></i>
                       Registrarse

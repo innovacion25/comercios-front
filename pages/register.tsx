@@ -3,7 +3,7 @@ import 'remixicon/fonts/remixicon.css';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import PageLayout from '../components/PageLayout';
 import NotifacationToast from '../components/NotificationToast';
 
@@ -16,8 +16,13 @@ export default function Register() {
     username: ''
   })
 
+  const [loading, setLoading] = useState(false)
   const [notifications, setNotifications] = useState(false)
   const [messageToast, setMessageToast] = useState('')
+
+  useEffect(() => {
+    setLoading(true)
+  }, [])
 
   const handleChange = (e) => {
     setCredentials({
@@ -57,6 +62,7 @@ export default function Register() {
           </div>
           <div className="bg-base-100 flex justify-center items-center lg:col-span-3 h-screen">
             <div className="w-full flex flex-col justify-center lg:p-40 p-8 h-full">
+              {loading ? (
               <form onSubmit={handleSubmit}>
                 <p className="text-2xl font-bold text-gray-600 text-center mb-8">Registrar cuenta</p>
                 <div className='grid lg:grid-cols-2 gap-6'>
@@ -84,6 +90,11 @@ export default function Register() {
                   </Link>
                 </div>
               </form>
+              ) : (
+                <div className='flex justify-center items-center'>
+                  <progress className="progress w-56"></progress>
+                </div>
+              )}
             </div>
           </div>
         </div>

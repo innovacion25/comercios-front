@@ -1,15 +1,21 @@
 import { NextResponse } from 'next/server'
+import { jwtVerify } from 'jose'
 
-export function middleware(req) {
-  // const path = req.nextUrl.pathname
+export async function middleware(req) {
   const cookie = req.cookies.get('TokenSession')
 
   if (cookie === undefined) {
     return NextResponse.redirect(new URL('/login', req.url))
   }
 
-
-  return NextResponse.next()
+  try {
+    const {payload} = await jwtVerify(cookie.value, new TextEncoder().encode(process.env['TOKEN_SECRET']))
+    // console.log(payload)
+    return NextResponse.next()
+  } catch (error) {
+    // console.log(error)
+    return NextResponse.redirect(new URL('/login', req.url))
+  }
 }
 
 export const config = {

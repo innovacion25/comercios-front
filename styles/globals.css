@@ -43,7 +43,7 @@ a {
   --tw-border-opacity: 1;
   border-color: hsl(var(--a) / var(--tw-border-opacity));
   --tw-bg-opacity: 1;
-  background-color: hsl(var(--a) / var(--tw-bg-opacity));
+  background-color: #F1F5F9;
   --tw-text-opacity: 1;
   color: hsl(var(--ac) / var(--tw-text-opacity));
   height: 48px;
