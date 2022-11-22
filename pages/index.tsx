@@ -10,7 +10,7 @@ export default function Home() {
         <div className="flex justify-between w-full px-8 py-2 row-span-2">
           <div className="flex">
             <a className="btn btn-ghost normal-case text-xl">
-              <Image src="/img/logo.png" width={100} height={42}/>
+              <Image src="/img/logo.png" width={100} height={42} alt="imagen logo"/>
             </a>
           </div>
           <div className="grid grid-cols-2 gap-2">
@@ -18,7 +18,7 @@ export default function Home() {
               <i className="ri-user-add-line ri-xl text-primary"></i>
               Registrarse
             </Link>
-            <Link href="/register" className="btn btn-ghost gap-2 capitalize font-normal">
+            <Link href="/login" className="btn btn-ghost gap-2 capitalize font-normal">
               <i className="ri-user-2-line ri-xl text-primary"></i>
               Iniciar sesión
             </Link>
@@ -28,7 +28,7 @@ export default function Home() {
           <ul className="flex gap-6">
             <li className="flex items-center gap-4">
               Más buscados
-              <i class="ri-menu-line text-primary"></i>
+              <i className="ri-menu-line text-primary"></i>
             </li>
             <li><a href="#">Categoria</a></li>
             <li><a href="#">Categoria</a></li>

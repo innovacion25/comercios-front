@@ -35,7 +35,7 @@ export default function Register() {
     e.preventDefault()
 
     await axios.post('/api/auth/register', credentials).then(res => {
-      router.push('/dashboard/inicio')
+      router.push('/dashboard')
     }).catch(e => {
       let message = e.response.data.message
       setNotifications(true)

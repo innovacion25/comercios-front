@@ -41,7 +41,7 @@ export default function Login() {
     // console.log(botonSubmit)
 
     await axios.post('/api/auth/login', credentials).then(res => {
-      router.push('/dashboard/inicio')
+      router.push('/dashboard')
     }).catch(e => {
       let message = e.response.data.message
       setNotifications(true)

@@ -1,9 +1,14 @@
-const index = () => {
-    return (
-      <>
-        
-      </>
-    )
-  }
+import 'remixicon/fonts/remixicon.css';
+import BaseDashboard from '../../components/dashboard/BaseDashboard';
+
+export default function dashboardPage (){
   
-export default index;
+
+  return (
+    <>
+      <BaseDashboard tpsUser='superuser'>
+        
+      </BaseDashboard>
+    </>
+  )
+}

@@ -3,14 +3,13 @@ import { jwtVerify } from 'jose'
 
 export async function middleware(req) {
   const cookie = req.cookies.get('TokenSession')
-
   if (cookie === undefined) {
     return NextResponse.redirect(new URL('/login', req.url))
   }
 
   try {
     const {payload} = await jwtVerify(cookie.value, new TextEncoder().encode(process.env['TOKEN_SECRET']))
-    // console.log(payload)
+
     return NextResponse.next()
   } catch (error) {
     // console.log(error)
