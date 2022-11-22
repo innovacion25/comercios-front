@@ -59,7 +59,7 @@ export default function Login() {
       <PageLayout title='Login'>
         <div className="grid lg:grid-cols-5">
           <div className="lg:col-span-2 lg:visible invisible lg:h-full h-0 bg-secondary flex flex-col lg:p-14 justify-center items-center ">
-            <img src="/img/img-inicio.png" className='w-80' alt="imagen login" />
+            <img src="/img/logo.png" className='w-80' alt="imagen login" />
             <div className='text-center'>
               <p className='text-base-100 text-4xl'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</p>
             </div>

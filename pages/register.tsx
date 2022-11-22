@@ -61,7 +61,7 @@ export default function Register() {
             </div>
           </div>
           <div className="bg-base-100 flex justify-center items-center lg:col-span-3 h-screen">
-            <div className="w-full flex flex-col justify-center lg:p-40 p-8 h-full">
+            <div className="w-full flex flex-col justify-center lg:p-40 p-8 h-full max-w-3xl">
               {loading ? (
               <form onSubmit={handleSubmit}>
                 <p className="text-2xl font-bold text-gray-600 text-center mb-8">Registrar cuenta</p>

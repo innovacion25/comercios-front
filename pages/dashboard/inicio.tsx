@@ -7,7 +7,7 @@ const inicio = () => {
         <div className="h-screen pt-3 px-5 flex w-screen">
           <div className='w-64'>
             <div className='text-white w-full flex justify-center text-4xl mt-4'>  
-              LOGO
+              {/*<img src="/img/logo.png" alt="">*/}
             </div>
             <div className='mt-20'>
               <ul>
