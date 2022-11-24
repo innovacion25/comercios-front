@@ -1,11 +1,15 @@
 import axios from 'axios';
 import 'remixicon/fonts/remixicon.css';
 import BaseDashboard from '../../../components/dashboard/BaseDashboard';
+import React, { useEffect, useState } from 'react'
 
-export default function configPage({ plans }) {
+export default function configPage({user, plans, setLoading }) {
+  useEffect(() => {
+    setLoading(true)
+  }, [])
   return (
     <>
-      <BaseDashboard tpsUser='superuser'>
+      <BaseDashboard tpsUser={user.tpsUser}>
         <div className='flex justify-between'>
           <div>
             <h2 className='text-2xl uppercase'>Planes</h2>
@@ -63,7 +67,7 @@ export default function configPage({ plans }) {
               </tr>
             </thead>
             <tbody>
-              {plans.map((plan) => (
+              {(plans.length > 0) ? (plans.map((plan) => (
                 <tr>
                   <td>{plan.name}</td>
                   <td>{plan.price}</td>
@@ -81,7 +85,13 @@ export default function configPage({ plans }) {
                     </div>
                   </td>
                 </tr>
-              ))}
+              ))) : (
+                <tr>
+                  <td colspan="4" className="text-center">
+                    Sin resultado
+                  </td>
+                </tr>
+              )}
             </tbody>
           </table>
         </div>

@@ -8,11 +8,8 @@ import PageLayout from '../components/PageLayout';
 import NotifacationToast from '../components/NotificationToast';
 import { signIn } from 'next-auth/react';
 
-export default function Login() {
+export default function Login({loading, setLoading, user, setUser}) {
   const router = useRouter()
-
-  // estados
-  const [loading, setLoading] = useState(false)
 
   const [credentials, setCredentials] = useState({
     email: '',
@@ -36,23 +33,27 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    // let botonSubmit = e.target[6]
-
-    // console.log(botonSubmit)
+    let botonSubmit = e.target[6]
+    botonSubmit.classList.add('loading')
 
     await axios.post('/api/auth/login', credentials).then(res => {
+      const {data} = res
+      console.log(data)
+      setUser(data.token)
+      setLoading(false)
       router.push('/dashboard')
     }).catch(e => {
-      let message = e.response.data.message
+      let message = 'Usuario o contraseña invalida'
+      console.log(e)
       setNotifications(true)
       setTimeout(() => {
         setNotifications(false)
       }, 4000)
       setMessageToast(message)
     })
-  }
 
-  // console.log(loading)
+    botonSubmit.classList.remove('loading')
+  }
 
   return (
     <>

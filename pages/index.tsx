@@ -2,8 +2,15 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import 'remixicon/fonts/remixicon.css'
+import React, { useEffect, useState } from 'react'
 
-export default function Home() {
+export default function Home({setLoading}) {
+
+  useEffect(() => {
+    setLoading(true)
+  }, [])
+
+
   return (
     <>
       <div className="navbar bg-base-100 shadow w-screen grid grid-rows-3 p-0">

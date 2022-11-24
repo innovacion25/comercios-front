@@ -20,7 +20,8 @@ export default async function Login(req, res) {
 
     return res.status(200).json({
       error: false,
-      message: 'Sesión iniciada'
+      message: 'Sesión iniciada',
+      token: result.data 
     })
   } catch (e) {
     return res.status(401).json({
