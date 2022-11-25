@@ -17,6 +17,11 @@ export default function App({
     setUser()
   },[loading])
 
+  const isLoading = async (loading: any)=>{
+    await setUser()
+    setLoading(loading)
+  }
+
   const setUser = async()=>{
     const {data} = await axios.get('/api/auth/cookieUser')
     setUserData(data.token)
@@ -32,7 +37,7 @@ export default function App({
           </svg>
         </div>
       </div>
-      <Component {...pageProps} loading={loading} setLoading={setLoading} user={user} setUser={setUser} />
+      <Component {...pageProps} loading={loading} setLoading={isLoading} user={user} setUser={setUser} />
     </SessionProvider>
   )
 }

@@ -1,23 +1,23 @@
-import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import 'remixicon/fonts/remixicon.css'
 import React, { useEffect, useState } from 'react'
+import PageLayout from '../components/PageLayout'
 
-export default function Home({setLoading}) {
-
+export default function Home({ setLoading }) {
+  
   useEffect(() => {
     setLoading(true)
   }, [])
 
 
   return (
-    <>
+    <PageLayout title="Busca tus negocios favoritos aqui">
       <div className="navbar bg-base-100 shadow w-screen grid grid-rows-3 p-0">
         <div className="flex justify-between w-full px-8 py-2 row-span-2">
           <div className="flex">
             <a className="btn btn-ghost normal-case text-xl">
-              <Image src="/img/logo.png" width={100} height={42} alt="imagen logo"/>
+              <Image src="/img/logo.png" width={100} height={42} alt="imagen logo" />
             </a>
           </div>
           <div className="grid grid-cols-2 gap-2">
@@ -50,24 +50,25 @@ export default function Home({setLoading}) {
         <div className="carousel w-full">
           <div id="item1" className="carousel-item w-full">
             <img src="https://placeimg.com/800/200/arch" className="w-full" />
-          </div> 
+          </div>
           <div id="item2" className="carousel-item w-full">
             <img src="https://placeimg.com/800/200/arch" className="w-full" />
-          </div> 
+          </div>
           <div id="item3" className="carousel-item w-full">
             <img src="https://placeimg.com/800/200/arch" className="w-full" />
-          </div> 
+          </div>
           <div id="item4" className="carousel-item w-full">
             <img src="https://placeimg.com/800/200/arch" className="w-full" />
           </div>
-        </div> 
+        </div>
         <div className="flex justify-center w-full py-2 gap-2">
-          <a href="#item1" className="btn btn-xs btn-circle"></a> 
-          <a href="#item2" className="btn btn-xs btn-circle"></a> 
-          <a href="#item3" className="btn btn-xs btn-circle"></a> 
+          <a href="#item1" className="btn btn-xs btn-circle"></a>
+          <a href="#item2" className="btn btn-xs btn-circle"></a>
+          <a href="#item3" className="btn btn-xs btn-circle"></a>
           <a href="#item4" className="btn btn-xs btn-circle"></a>
         </div>
       </div>
-    </>
+
+    </PageLayout>
   )
 }

@@ -12,7 +12,7 @@ export default function BaseDashboard({ children, tpsUser = 'shops' }) {
       <div className="bg-secondary flex">
         <div className="h-screen pt-3 px-5 flex w-screen">
           <Navegation tpsUser={tpsUser}></Navegation>
-          <div className="bg-base-100 h-full w-full rounded-tr-3xl rounded-tl-3xl">
+          <div id="dashboard" className="h-full w-full rounded-tr-3xl rounded-tl-3xl">
             <NavBar></NavBar>
             <div className='p-8'>
               {children}

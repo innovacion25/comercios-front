@@ -8,7 +8,7 @@ import PageLayout from '../components/PageLayout';
 import NotifacationToast from '../components/NotificationToast';
 import { signIn } from 'next-auth/react';
 
-export default function Login({loading, setLoading, user, setUser}) {
+export default function Login({loading, setLoading, setUser}) {
   const router = useRouter()
 
   const [credentials, setCredentials] = useState({
