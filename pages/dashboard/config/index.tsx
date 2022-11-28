@@ -10,7 +10,7 @@ export default function configPage({user, plans, setLoading }) {
   }, [])
   return (
     <>
-      <BaseDashboard tpsUser={user.tpsUser}>
+      <BaseDashboard tpsUser={user.tpsUser} user={user}>
         <PlansConfig plans={plans}>
         </PlansConfig>
       </BaseDashboard>

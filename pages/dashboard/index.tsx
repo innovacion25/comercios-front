@@ -13,8 +13,7 @@ export default function dashboardPage ({user,setLoading}){
   return (
     <>
       <PageLayout title={`Dashboard | ${tpsDashboard}`}>
-        <BaseDashboard tpsUser={user.tpsUser}>
-
+        <BaseDashboard tpsUser={user.tpsUser} user={user}>
         </BaseDashboard>
       </PageLayout>
     </>

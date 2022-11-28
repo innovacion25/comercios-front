@@ -1,11 +1,11 @@
 import { useRouter } from 'next/router'
 import axios from 'axios'
 
-export default function NavBar({ }) {
+export default function NavBar({user}) {
   const router = useRouter()
 
   const logout = async ()=>{
-    const result = await axios.post('/api/auth/logout').then((res)=>{
+    const result = await axios.post('/api/auth/logout').then(()=>{
       router.push('/login')
     }).catch((err)=>{
       // console.log(err)
@@ -17,9 +17,8 @@ export default function NavBar({ }) {
       <div className="py-2 px-6 flex gap-4 justify-between shadow items-center">
         <div className="text-sm breadcrumbs">
           <ul>
-            <li><a>Home</a></li>
-            <li><a>Documents</a></li>
-            <li>Add Document</li>
+            <li>Bienvenido</li>
+            <li>{user.username}</li>
           </ul>
         </div>
 

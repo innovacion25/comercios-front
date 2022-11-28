@@ -1,19 +1,14 @@
-import Link from 'next/link'
-import { useRouter } from 'next/router'
 import Navegation from './Navegation'
 import NavBar from './NavBar'
 
-export default function BaseDashboard({ children, tpsUser = 'shops' }) {
-  const router = useRouter()
-  const path = router.asPath  
-
+export default function BaseDashboard({ children, tpsUser = 'shops', user }) {
   return (
     <>
       <div className="bg-secondary flex">
-        <div className="h-screen pt-3 px-5 flex w-screen">
+        <div className="min-h-screen pt-3 px-5 flex w-screen">
           <Navegation tpsUser={tpsUser}></Navegation>
           <div id="dashboard" className="h-full w-full rounded-tr-3xl rounded-tl-3xl">
-            <NavBar></NavBar>
+            <NavBar user={user}></NavBar>
             <div className='p-8'>
               {children}
             </div>
