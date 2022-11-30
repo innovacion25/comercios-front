@@ -1,28 +1,22 @@
-import axios from 'axios';
 import 'remixicon/fonts/remixicon.css';
 import BaseDashboard from '../../../components/dashboard/BaseDashboard';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import PlansConfig from '../../../components/dashboard/config/Plans';
+import PageLayout from '../../../components/PageLayout';
+import CategoriesConfig from '../../../components/dashboard/config/Categories';
 
-export default function configPage({user, plans, setLoading }) {
+export default function configPage({ user, setLoading }) {
   useEffect(() => {
     setLoading(true)
   }, [])
   return (
     <>
-      <BaseDashboard tpsUser={user.tpsUser} user={user}>
-        <PlansConfig plans={plans}>
-        </PlansConfig>
-      </BaseDashboard>
+      <PageLayout title='Configuración'>
+        <BaseDashboard tpsUser={user.tpsUser} user={user}>
+          <PlansConfig/>
+          <CategoriesConfig/>
+        </BaseDashboard>
+      </PageLayout>
     </>
   )
-}
-
-export async function getServerSideProps() {
-  const plansQuery = await axios.get('http://localhost:3004/api/config/plans')
-  const { data: plans } = plansQuery
-
-  return {
-    props: { plans },
-  }
 }

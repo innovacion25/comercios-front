@@ -33,7 +33,7 @@ export default function App({
         <div id="ftco-loader" className={`fullscreen ${loading == false ? 'show' : ' '}`}>
           <svg className="circular" width="48px" height="48px">
             <circle className="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#ED8354" />
-            <circle className="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#B8860B" />
+            <circle className="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#CCC" />
           </svg>
         </div>
       </div>

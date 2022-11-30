@@ -6,27 +6,25 @@ import NotifacationToast from '../../NotificationToast';
 import NotifacationAlert from '../../NotificationAlert';
 
 
-export default function PlansConfig() {
+export default function CategoriesConfig() {
   const router = useRouter()
   const host = 'http://localhost:3004'
 
   const [credentials, setCredentials] = useState({
     _id: '',
     name: '',
-    price: '',
     description: ''
   })
 
-  const [plans, setPlans] = useState([{
+  const [categories, setCategories] = useState([{
     _id: '',
     name: '',
-    price: '',
     description: ''
   }])
 
-  const [loadingPlans, setLoadingPlans] = useState(false)
+  const [loadingCategory, setLoadingCategory] = useState(false)
   const [method, setMethod] = useState('get')
-  const [url, setUrl] = useState(`${host}/api/config/plans`)
+  const [url, setUrl] = useState(`${host}/api/config/categorys`)
 
   const [messageToast, setMessageToast] = useState('')
   const [messageAlert, setMessageAlert] = useState('')
@@ -34,14 +32,14 @@ export default function PlansConfig() {
   const [notificationsAlert, setNotificationsAlert] = useState(false)
 
   useEffect(() => {
-    const url = `${host}/api/config/plans`
-    const getPlans = async () => {
+    const url = `${host}/api/config/categorys`
+    const getCategories = async () => {
       const { data } = await axios.get(url)
-      setPlans(data)
+      setCategories(data)
     }
-    getPlans()
-    setLoadingPlans(false)
-  }, [loadingPlans == true])
+    getCategories()
+    setLoadingCategory(false)
+  }, [loadingCategory == true])
 
   // ejucuaciones de funciones
   const handleChange = (e: any) => {
@@ -51,55 +49,52 @@ export default function PlansConfig() {
     })
   }
 
-  // crear plan
-  const createPlan = () => {
-    setUrl(`${host}/api/config/plans`)
+  // crear category
+  const createCategory = () => {
+    setUrl(`${host}/api/config/categorys`)
     setMethod('post')
     setCredentials({
       _id: '',
       name: '',
-      price: '',
       description: ''
     })
   }
 
-  // actualizar plan
-  const updatePlan = (plan: any) => {
-    setUrl(`${host}/api/config/plans/${plan._id}`)
+  // actualizar category
+  const updateCategory = (category: any) => {
+    setUrl(`${host}/api/config/categorys/${category._id}`)
     setMethod('put')
     setCredentials({
-      _id: plan._id,
-      name: plan.name,
-      price: plan.price,
-      description: plan.description
+      _id: category._id,
+      name: category.name,
+      description: category.description
     })
   }
 
-  // eliminar plan
-  const deletePlan = (plan: any) => {
-    setUrl(`${host}/api/config/plans/${plan._id}`)
+  // eliminar category
+  const deleteCategory = (category: any) => {
+    setUrl(`${host}/api/config/categorys/${category._id}`)
     setMethod('delete')
     setCredentials({
-      _id: plan._id,
-      name: plan.name,
-      price: plan.price,
-      description: plan.description
+      _id: category._id,
+      name: category.name,
+      description: category.description
     })
   }
 
   const handleSubmit = async (e: any) => {
     e.preventDefault()
-    let botonSubmit:any
-    let botonCancel:any 
+    let botonSubmit: any
+    let botonCancel: any
 
-    if(method === 'delete'){
-      botonSubmit = document.querySelector(".btn-submit-delete")
-      botonCancel = document.querySelector(".btn-cancel-delete")
-    }else{
-      botonSubmit = document.querySelector(".btn-submit")
-      botonCancel = document.querySelector(".btn-cancel")
+    if (method === 'delete') {
+      botonSubmit = document.querySelector(".btn-submit-delete-category")
+      botonCancel = document.querySelector(".btn-cancel-delete-category")
+    } else {
+      botonSubmit = document.querySelector(".btn-submit-category")
+      botonCancel = document.querySelector(".btn-cancel-category")
     }
-    
+
     botonSubmit.classList.add('loading')
 
 
@@ -110,15 +105,15 @@ export default function PlansConfig() {
     }).then(res => {
       // const { data } = res
       // let message = data.message
-      let message = 'Plan creado'
-      setLoadingPlans(true)
+      let message = 'Categoria creada'
+      setLoadingCategory(true)
       setToast(message)
       botonSubmit.classList.remove('loading')
       botonCancel.click()
     }).catch(e => {
       // const { data } = e.response
       // let message = data.message
-      let message = 'Plan ya existente'
+      let message = 'Categoria ya existente'
       setAlert(message)
       botonSubmit.classList.remove('loading')
     })
@@ -143,44 +138,42 @@ export default function PlansConfig() {
   return (
     <div className='container'>
       <div className='flex justify-between items-center mb-2'>
-        <div className='flex items-center'>
-          <h2 className='text-1xl uppercase'>Planes</h2>
+        <div>
+          <h2 className='text-1xl uppercase'>Categorias</h2>
         </div>
         <div className=''>
-          <label htmlFor="modal-plan" className="btn btn-primary btn-sm text-white" onClick={() => createPlan()}>
+          <label htmlFor="modal-category" className="btn btn-primary btn-sm text-white" onClick={() => createCategory()}>
             <i className="ri-add-line mr-2"></i>
             Agregar
           </label>
         </div>
       </div>
       <div className="overflow-x-auto mb-20 flex justify-center">
-        <table className="table min-w-[800px] w-full text-center">
+        <table className="table min-w-[800px] w-full text-center ">
           <thead>
             <tr>
               <th>Nombre</th>
-              <th>Precio</th>
               <th>Descripción</th>
               <th></th>
             </tr>
           </thead>
           <tbody>
-            {(plans.length > 0) ? (plans.map((plan) => (
+            {(categories.length > 0) ? (categories.map((category) => (
               <tr>
-                <td>{plan.name}</td>
-                <td>{plan.price} $</td>
+                <td>{category.name}</td>
                 <td>
                   <span className='whitespace-normal'>
-                    {plan.description}
+                    {category.description}
                   </span>
                 </td>
                 <td>
                   <div className="tooltip mr-4" data-tip="Editar">
-                    <label htmlFor="modal-plan" className="btn btn-circle btn-ghost btn-sm hover:text-primary" onClick={() => updatePlan(plan)}>
+                    <label htmlFor="modal-category" className="btn btn-circle btn-ghost btn-sm hover:text-primary" onClick={() => updateCategory(category)}>
                       <i className="ri-pencil-fill ri-lg"></i>
                     </label>
                   </div>
                   <div className="tooltip" data-tip="Eliminar">
-                    <label htmlFor="modal-delete-plan" className="btn btn-circle btn-ghost btn-sm hover:text-primary" onClick={() => deletePlan(plan)}>
+                    <label htmlFor="modal-delete-category" className="btn btn-circle btn-ghost btn-sm hover:text-primary" onClick={() => deleteCategory(category)}>
                       <i className="ri-delete-bin-7-fill ri-lg"></i>
                     </label>
                   </div>
@@ -198,8 +191,8 @@ export default function PlansConfig() {
       </div>
       {/* modals */}
       {/* create and edit */}
-      <input type="checkbox" id="modal-plan" className="modal-toggle"/>
-      <label htmlFor="modal-plan" className="modal cursor-pointer">
+      <input type="checkbox" id="modal-category" className="modal-toggle" />
+      <label htmlFor="modal-category" className="modal cursor-pointer">
         <label className="modal-box relative" htmlFor="">
           {notificationsAlert ? (
             <NotifacationAlert text={messageAlert} />
@@ -211,15 +204,6 @@ export default function PlansConfig() {
               </label>
               <input type="text" value={credentials.name} name="name" placeholder="Ingresar nombre" className="input input-bordered w-full" onChange={handleChange} required />
             </div>
-            <div className="form-control my-2">
-              <label className="label">
-                <span className="label-text">Ingresar monto</span>
-              </label>
-              <label className="input-group">
-                <input type="number" value={credentials.price} name="price" placeholder="10" className="input input-bordered w-full" onChange={handleChange} required />
-                <span>USD</span>
-              </label>
-            </div>
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Descripción</span>
@@ -227,26 +211,26 @@ export default function PlansConfig() {
               <textarea name="description" value={credentials.description} className="textarea textarea-bordered h-24" placeholder="Ingresar descripción" onChange={handleChange} required></textarea>
             </div>
             <div className="modal-action flex justify-between">
-              <label htmlFor="modal-plan" className="btn btn-cancel btn-ghost">Cancelar</label>
-              <button className="btn btn-primary text-white btn-submit">Continuar</button>
+              <label htmlFor="modal-category" className="btn btn-cancel-category btn-ghost">Cancelar</label>
+              <button className="btn btn-primary text-white btn-submit-category">Continuar</button>
             </div>
           </form>
         </label>
       </label>
       {/* delete */}
-      <input type="checkbox" id="modal-delete-plan" className="modal-toggle" />
-      <label htmlFor="modal-delete-plan" className="modal cursor-pointer">
+      <input type="checkbox" id="modal-delete-category" className="modal-toggle" />
+      <label htmlFor="modal-delete-category" className="modal cursor-pointer">
         <label className="modal-box relative" htmlFor="">
           <div className='text-center'>
             <i className="ri-error-warning-line ri-3x text-red-600"></i>
           </div>
-          <h3 className="text-lg font-bold text-center">Eliminar el plan "{credentials.name}"</h3>
-          <p className="py-4">Una ves eliminado el plan, este se eliminara permanentemente!</p>
+          <h3 className="text-lg font-bold text-center">Eliminar el categoria "{credentials.name}"</h3>
+          <p className="py-4">Una ves eliminada la categoria, este se eliminara permanentemente!</p>
           <p className='text-center'>Deseas Continuar?</p>
           <form onSubmit={handleSubmit}>
             <div className="modal-action flex justify-between">
-              <label htmlFor="modal-delete-plan" className="btn btn-cancel-delete btn-ghost">Cancelar</label>
-              <button className="btn btn-primary text-white btn-submit-delete">Continuar</button>
+              <label htmlFor="modal-delete-category" className="btn btn-cancel-delete-category btn-ghost">Cancelar</label>
+              <button className="btn btn-primary text-white btn-submit-delete-category">Continuar</button>
             </div>
           </form>
         </label>
