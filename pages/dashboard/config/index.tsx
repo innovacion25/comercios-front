@@ -4,6 +4,7 @@ import React, { useEffect } from 'react'
 import PlansConfig from '../../../components/dashboard/config/Plans';
 import PageLayout from '../../../components/PageLayout';
 import CategoriesConfig from '../../../components/dashboard/config/Categories';
+import LocationsConfig from '../../../components/dashboard/config/Locations';
 
 export default function configPage({ user, setLoading }) {
   useEffect(() => {
@@ -15,6 +16,7 @@ export default function configPage({ user, setLoading }) {
         <BaseDashboard tpsUser={user.tpsUser} user={user}>
           <PlansConfig/>
           <CategoriesConfig/>
+          <LocationsConfig/>
         </BaseDashboard>
       </PageLayout>
     </>
